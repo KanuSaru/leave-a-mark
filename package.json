@@ -1,0 +1,65 @@
+{
+  "name": "leave-a-mark",
+  "version": "1.0.0",
+  "description": "A guestbook for personal sites: a small form and a list of messages, kept by your own free Cloudflare Worker. Messages wait for your approval, and you get a Discord message or an email when someone signs. A custom element and a React component, in English and Spanish.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./react": {
+      "types": "./src/react.d.ts",
+      "default": "./src/react.js"
+    },
+    "./dist/leave-a-mark.js": "./dist/leave-a-mark.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "dist",
+    "worker/worker.js",
+    "worker/schema.sql",
+    "worker/wrangler.example.toml"
+  ],
+  "sideEffects": [
+    "./src/browser.js",
+    "./dist/leave-a-mark.js"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "build": "esbuild src/browser.js --bundle --format=iife --minify --target=es2020 --legal-comments=none --outfile=dist/leave-a-mark.js",
+    "deploy": "cd worker && npx wrangler deploy"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "keywords": [
+    "guestbook",
+    "indieweb",
+    "personal-site",
+    "cloudflare-workers",
+    "d1",
+    "turnstile",
+    "web-component",
+    "react",
+    "static-site"
+  ],
+  "author": "Erick Donado (https://github.com/KanuSaru)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KanuSaru/leave-a-mark.git"
+  },
+  "homepage": "https://github.com/KanuSaru/leave-a-mark#readme"
+}

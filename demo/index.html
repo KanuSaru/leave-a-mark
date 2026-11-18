@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>leave-a-mark demo</title>
+    <style>
+      body { margin: 0; padding: 2rem 1rem 4rem; font: 16px/1.5 system-ui, sans-serif; background: #f4f1ea; color: #1b1a17; }
+      main { max-width: 34rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+      h1 { margin: 0; font-size: 1.6rem; }
+      h2 { font-size: 1rem; margin: 0 0 0.75rem; }
+      p { margin: 0.25rem 0 0; }
+      .bar { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+      .bar button { font: inherit; padding: 0.2rem 0.7rem; cursor: pointer; }
+      section { padding: 1.25rem; border: 1px solid #1b1a1733; }
+      .night { background: #0d0d0c; color: #e7e2d6; border-color: #2b2a26;
+        --lm-line: #2b2a26; --lm-muted: #918c81; --lm-accent: #7390ff; --lm-on-ink: #0d0d0c; --lm-field: #131312; }
+      .paper { font-family: Georgia, serif; background: #fffdf7;
+        --lm-ink: #7a2e1d; --lm-accent: #7a2e1d; --lm-on-ink: #fffdf7; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>leave-a-mark</h1>
+        <p>These are in demo mode: sample messages, and the form only pretends to send.</p>
+        <div class="bar">
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="es">Español</button>
+        </div>
+      </header>
+
+      <section>
+        <h2>As it comes</h2>
+        <leave-a-mark demo></leave-a-mark>
+      </section>
+
+      <section class="night">
+        <h2>Dark, with a few CSS variables</h2>
+        <leave-a-mark demo label-send="Leave your mark"></leave-a-mark>
+      </section>
+
+      <section class="paper">
+        <h2>Only the messages</h2>
+        <leave-a-mark demo parts="entries" no-title></leave-a-mark>
+      </section>
+    </main>
+
+    <script src="../dist/leave-a-mark.js"></script>
+    <script>
+      // the guestbooks follow the page's language
+      for (const b of document.querySelectorAll("[data-lang]")) b.onclick = () => (document.documentElement.lang = b.dataset.lang);
+    </script>
+  </body>
+</html>

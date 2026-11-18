@@ -1,0 +1,24 @@
+# Cloudflare settings for your guestbook. Copy this file to wrangler.toml and fill it in.
+# (wrangler.toml is ignored by git, so your own values stay on your computer.)
+name = "guestbook"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "guestbook"
+database_id = "PASTE-THE-ID-FROM-wrangler-d1-create"
+
+[vars]
+# The sites allowed to sign it, comma-separated. No slash at the end.
+ALLOWED_ORIGINS = "https://your-site.example,http://localhost:3000"
+# Shown on the admin page and in alerts.
+SITE_NAME = "My guestbook"
+
+# Secrets are never written here. Set them with `npx wrangler secret put NAME`:
+#   TURNSTILE_SECRET   Turnstile's secret key                         (needed)
+#   ADMIN_KEY          a long random password for /admin              (needed)
+#   DISCORD_WEBHOOK    a Discord webhook URL, for alerts              (optional)
+#   RESEND_API_KEY     a Resend API key, for email alerts             (optional)
+#   ALERT_EMAIL        where email alerts go                          (with RESEND_API_KEY)
+#   ALERT_FROM         the sender, once you've set up your own domain (optional)
